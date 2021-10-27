@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "CV"
+title: "Website of Mikolaj K. Schmidt / CV"
 permalink: /cv/
 author_profile: true
 redirect_from:
