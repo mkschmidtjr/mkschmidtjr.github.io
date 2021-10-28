@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Academic personal website of Mikolaj K. Schmidt"
+title: "About me"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
