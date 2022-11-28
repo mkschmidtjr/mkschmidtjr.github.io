@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.149">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>quantum_tunnelling_presentation2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="quantum_tunnelling_presentation2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="quantum_tunnelling_presentation2_files/libs/quarto-html/quarto.js"></script>
+<script src="quantum_tunnelling_presentation2_files/libs/quarto-html/popper.min.js"></script>
+<script src="quantum_tunnelling_presentation2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="quantum_tunnelling_presentation2_files/libs/quarto-html/anchor.min.js"></script>
+<link href="quantum_tunnelling_presentation2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="quantum_tunnelling_presentation2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="quantum_tunnelling_presentation2_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="quantum_tunnelling_presentation2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="quantum_tunnelling_presentation2_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="quantum-physics-wavefunctions-in-1d-potentials-continued" class="level1 smaller">
+<h1 class="smaller">68413 Quantum Physics: Wavefunctions in 1D potentials (continued)</h1>
+<hr>
+<section id="refresher-solving-time-independent-schrödinger-equation" class="level3 smaller">
+<h3 class="smaller anchored" data-anchor-id="refresher-solving-time-independent-schrödinger-equation">Refresher: Solving time-independent Schrödinger equation</h3>
+<p><span class="math display">\[
+\begin{equation}
+    \hat{H} \Psi(x) = \left[\frac{\hat{p}^2}{2m} + V(x)\right] \Psi(x) = E\Psi(x),
+\end{equation}
+\]</span></p>
+<p>i.e.&nbsp;finding <span class="math inline">\(\Psi(x)\)</span> as the eigenfunctions of Hamiltonian <span class="math inline">\(\hat{H}\)</span>.</p>
+<p>In the position representation, the momentum operator <span class="math inline">\(\hat{p} = -i\hbar \mathrm{d}/\mathrm{d}x\)</span>, so we end up with an ODE:</p>
+<p><span class="math display">\[
+\begin{equation}
+    \left[-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2}{\mathrm{d}x^2} + V(x)- E \right] \Psi(x) = 0.
+\end{equation}
+\]</span></p>
+<hr>
+<!-- ### Refresher: Solving time-independent Schrödinger equation (2) -->
+<p>In piecewise-continuous potentials</p>
+<p><span class="math display">\[\begin{equation}
+    V(x) =
+    \begin{cases}
+    V_1,&amp; \text{if } x&lt; 0\\
+    V_2,&amp; \text{if } x \geq 0,
+\end{cases}
+\end{equation}
+\]</span></p>
+<!-- ![](potential_schematic.png){.absolute top="400" left="-50" width="760" height="285"} -->
+<p><img src="potential_schematic.png" width="900" height="150"></p>
+<p>In each domain <span class="math inline">\(i\)</span></p>
+<p><span class="math display">\[
+\begin{equation}
+    \Bigg[\frac{\mathrm{d}^2}{\mathrm{d}x^2} + \underbrace{\frac{2m}{\hbar^2} (E - V_i)}_{k_i^2} \Bigg] \Psi_i(x) = 0
+\end{equation}
+\]</span></p>
+<p>If <span class="math inline">\(E&gt;V_i\)</span>, we get <span class="math inline">\(k_i \in \mathbb{R}\)</span>.</p>
+<hr>
+<p>General solutions with unknown amplitudes <span class="math inline">\(A_1,B_1,A_2,B_2\)</span>:</p>
+<p><span class="math display">\[
+\begin{align}\label{eq:solution1}
+    \Psi_1(x) = \underbrace{A_1 e^{i k_1 x}}_{\rightarrow} + \underbrace{B_1 e^{-i k_1 x}}_{\leftarrow},
+    \quad \Psi_2(x) = \underbrace{A_2 e^{i k_2 x}}_{\rightarrow} + \underbrace{B_2 e^{-i k_2 x}}_{\leftarrow},
+\end{align}
+\]</span></p>
+<p>Boundary conditions:</p>
+<p><span class="math display">\[
+    \begin{equation}
+        \lim_{x\rightarrow 0} \Psi_1(x) = \lim_{x\rightarrow 0} \Psi_2(x),
+    \end{equation}
+\]</span></p>
+<p><span class="math display">\[
+    \begin{equation}
+        \lim_{x\rightarrow 0} \frac{\mathrm{d}}{\mathrm{d}x}\Psi_1(x) = \lim_{x\rightarrow 0} \frac{\mathrm{d}}{\mathrm{d}x}\Psi_2(x),
+    \end{equation}
+\]</span></p>
+<p><img src="potential_step_up.png" width="600" height="300"></p>
+<hr>
+<p>(4 variables, 2 equations) - ill-defined problem?</p>
+<ul>
+<li>problem is linear, i.e.&nbsp;can set <span class="math inline">\(A_1=1\)</span>,</li>
+<li>particle incident from the left — no left-propagating component in <span class="math inline">\(i=2\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+\begin{equation}
+    \Psi_1(x) = \color{blue}{e^{i k_1 x}} + \color{orange}{B_1 e^{-i k_1 x}},\quad \Psi_2(x) = \color{green}{A_2 e^{i k_2 x}},
+\end{equation}
+\]</span></p>
+<p><img src="potential_schematic.png" width="900" height="150"></p>
+<hr>
+<p><img src="potential_step_up.png" width="600" height="300"></p>
+<p>add time evolution: <span class="math inline">\(\Psi(x,t) = e^{-iEt/\hbar}\Psi(x,0)\)</span></p>
+<p><img src="potential_step_up.gif" width="600" height="300"></p>
+<p>code available at github</p>
+<!-- ![](potential_step.pdf){.absolute top="0" left="30" width="600" height="300"}
+![](potential_step_barely.pdf){.absolute top="300" left="30" width="600" height="300"} -->
+<hr>
+<div id="fig-elephants" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-surus" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="potential_step.gif" class="img-fluid figure-img" data-ref-parent="fig-elephants" width="600"></p>
+<p></p><figcaption class="figure-caption">(a) <span class="math inline">\(V_1 = 0, V_2 = 2, E = 3\)</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-hanno" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="potential_step_barely.gif" class="img-fluid figure-img" data-ref-parent="fig-elephants" width="600"></p>
+<p></p><figcaption class="figure-caption">(b) <span class="math inline">\(V_1 = 0, V_2 = 3, E = 3.1\)</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: potentials</figcaption><p></p>
+</figure>
+</div>
+<!-- ![$V_1 = 0, V_2 = 2, E = 3$](potential_step.gif){.absolute top="50" left="30" width="600" height="300"}
+
+![$V_1 = 0, V_2 = 3, E = 3.1$](potential_step_barely.gif){.absolute top="400" left="30" width="600" height="300"} -->
+<hr>
+<p>problems</p>
+<ul>
+<li>what’s causing the oscillating behaviour of the wavefunction in the left part?</li>
+<li>separate the incident and reflected waves, plot or animate</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="quantum-tunnelling" class="level1 smaller">
+<h1 class="smaller">Quantum tunnelling</h1>
+<hr>
+<p>what if <span class="math inline">\(V(x)&gt;E\)</span> somewhere?</p>
+<ul>
+<li><p>classical “hard border” (no penetration)</p></li>
+<li><p>quantum transmission</p></li>
+</ul>
+<p><img src="schematics_barrier.png" width="900" height="150"></p>
+<hr>
+<p><span class="math display">\[
+\begin{equation}
+    \Bigg[\frac{\mathrm{d}^2}{\mathrm{d}x^2} + \underbrace{\frac{2m}{\hbar^2} E}_{k_1^2} \Bigg] \Psi_1(x) = 0 \rightarrow \Psi_1(x) = \underbrace{A_1 e^{i k_1 x}}_{\rightarrow} + \underbrace{B_1 e^{-i k_1 x}}_{\leftarrow},
+\end{equation}
+\]</span></p>
+<p><span class="math display">\[
+\begin{equation}
+    \Bigg[\frac{\mathrm{d}^2}{\mathrm{d}x^2} + \underbrace{\frac{2m}{\hbar^2} E}_{k_3^2} \Bigg] \Psi_3(x) = 0 \rightarrow \Psi_3(x) = \underbrace{A_3 e^{i k_3 x}}_{\rightarrow} + \underbrace{B_3 e^{-i k_3 x}}_{\leftarrow},
+\end{equation}
+\]</span></p>
+<p><span class="math display">\[
+\begin{equation}
+    \Bigg[\frac{\mathrm{d}^2}{\mathrm{d}x^2} + \underbrace{\frac{2m}{\hbar^2} (E - V_2)}_{-\kappa_2^2} \Bigg] \Psi_2(x) = 0 \rightarrow \Psi_2(x) = \underbrace{B_2 e^{-\kappa_2 x}}_{\searrow} + \underbrace{A_2 e^{\kappa_2 x}}_{\nearrow}.
+\end{equation}
+\]</span></p>
+<hr>
+<p><span class="math display">\[
+\begin{equation}
+    \Psi_2(x) = \color{orange}{\underbrace{B_2 e^{-\kappa_2 x}}_{\searrow}} + \color{blue}{\underbrace{A_2 e^{\kappa_2 x}}_{\nearrow}}.
+\end{equation}
+\]</span></p>
+<p><img src="schematics.png" class="absolute" data-top="150" data-left="150" width="800" height="400"></p>
+<hr>
+<p>Stitching solutions</p>
+<p><span class="math display">\[
+\begin{align}
+    &amp;\Psi_1(0) = \Psi_2(0),\quad \Psi_1'(0) = \Psi_2'(0)\\
+    &amp;\Psi_2(L) = \Psi_3(L),\quad \Psi_2'(L) = \Psi_3'(L)
+\end{align}
+\]</span></p>
+<p>6 variables <span class="math inline">\((A_1, B_1, A_2, B_2, A_3, B_3)\)</span> but only 4 equations! note: no left-propagating fields in domain 3 (<span class="math inline">\(B_3=0\)</span>), linear (<span class="math inline">\(A_1=1\)</span>):</p>
+<p><span class="math display">\[
+\begin{align}
+    &amp;\Psi_1(x) = \color{blue}{\underbrace{e^{i k_1 x}}_{\rightarrow}} + \color{orange}{\underbrace{B_1 e^{-i k_1 x}}_{\leftarrow}},\\
+    &amp;\Psi_2(x) = \underbrace{B_2 e^{-\kappa_2 x}}_{\searrow} + \underbrace{A_2 e^{\kappa_2 x}}_{\nearrow},\\
+    &amp;\Psi_3(x) = \color{green}{\underbrace{A_3 e^{i k_3 x}}_{\rightarrow}},
+\end{align}
+\]</span></p>
+<p><img src="schematics_barrier.png" class="absolute" data-top="550" width="900" height="150"></p>
+<hr>
+</section>
+<section id="quantum-tunnelling-results" class="level1">
+<h1>Quantum tunnelling — results</h1>
+<p><a href="https://www.github...">lecture notes</a></p>
+<p><a href="https://www.github...">python codes</a></p>
+<p><a href="https://www.github...">Mathematica code</a></p>
+<hr>
+<p>Time-independent Schrodinger equation <span class="math inline">\(\rightarrow\)</span> ODE: <span class="math display">\[
+\begin{equation}
+    \left[-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2}{\mathrm{d}x^2} + V(x)\right] \Psi(x) = E \Psi(x) \rightarrow \left[\frac{\mathrm{d}^2}{\mathrm{d}x^2} + \frac{2m}{\hbar^2} (E - V_i) \right] \Psi_i(x) = 0.
+\end{equation}
+\]</span></p>
+<ul>
+<li><p>potential step — <span class="math inline">\(V(x)&lt;E\)</span> everywhere <img src="potential_schematic.png" width="900" height="150"></p></li>
+<li><p>potential barrier — <span class="math inline">\(V_b&gt;E\)</span> <img src="schematics_barrier.png" width="900" height="150"></p></li>
+</ul>
+<hr>
+<section id="potential-barrier-v_be" class="level3">
+<h3 class="anchored" data-anchor-id="potential-barrier-v_be">potential barrier — <span class="math inline">\(V_b&gt;E\)</span></h3>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><span class="math display">\[
+\begin{align}
+    &amp;k_1=\sqrt{\frac{2m}{\hbar}^2E}\\
+    &amp;\Psi_1(x) = A_1 e^{i k_1 x} + B_1 e^{-i k_1 x}
+\end{align}
+\]</span></p>
+</div><div class="column" style="width:33%;">
+<p><span class="math display">\[
+\begin{align}
+    &amp;\kappa_2=\sqrt{\frac{2m}{\hbar}^2(V_b-E)},\\
+    &amp;\Psi_2(x) = A_2 e^{\kappa_2 x} + B_2 e^{-\kappa_2 x},
+\end{align}
+\]</span></p>
+</div><div class="column" style="width:33%;">
+<p><span class="math display">\[
+\begin{align}
+    &amp;k_3=\sqrt{\frac{2m}{\hbar}^2E}\\
+    &amp;\Psi_3(x) = A_3 e^{i k_3 x} + B_3 e^{-i k_3 x}
+\end{align}
+\]</span></p>
+</div>
+</div>
+<!-- ![](schematics_barrier.png){.absolute left="50" width="1200" height="200"} -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="schematics_barrier.png" width="1200" height="200" class="figure-img"></p>
+</figure>
+</div>
+<p>boundary conditions:</p>
+<ul>
+<li><p>continuity of wavefunction at <span class="math inline">\(x=0\)</span>: <span class="math inline">\(\Psi_1(0) = \Psi_2(0)\)</span></p></li>
+<li><p>continuity of wavefunction derivative at <span class="math inline">\(x=0\)</span>: <span class="math inline">\(\Psi_1'(0) = \Psi_2'(0)\)</span>,</p></li>
+<li><p>continuity of wavefunction at <span class="math inline">\(x=L\)</span>: <span class="math inline">\(\Psi_2(L) = \Psi_3(L)\)</span></p></li>
+<li><p>continuity of wavefunction at derivative at <span class="math inline">\(x=L\)</span>: <span class="math inline">\(\Psi_2'(L) = \Psi_3'(L)\)</span>,</p></li>
+</ul>
+<!-- ![](potential_step_barely.gif){.absolute left="400" top="400" width="600" height="300"} -->
+<!-- ---
+
+- potential barrier --- $V_b>E$
+![](schematics_barrier.png){width="900" height="150"}
+
+
+$$
+\begin{equation}
+    \kappa_2=\sqrt{\frac{2m}{\hbar}^2(V_b-E)},\quad \Psi_2(x) = \color{gray}{\underbrace{B_2 e^{-\kappa_2 x}}_{\searrow}} + \color{violet}{\underbrace{A_2 e^{\kappa_2 x}}_{\nearrow}},
+\end{equation}
+$$
+
+boundary conditions:
+
+$\Psi_1(0) = \Psi_2(0)$
+
+$\Psi_1'(0) = \Psi_2'(0)$,
+
+$\Psi_2(L) = \Psi_3(L)$
+
+$\Psi_2'(L) = \Psi_3'(L)$,
+
+![](barrier1.gif){.absolute left="400" top="400" width="600" height="300"}
+ -->
+<hr>
+<hr>
+<p>from homework: <span class="math display">\[
+\begin{align}
+    &amp;B_1 = \frac{(k_1-k_3)\kappa_2 \cosh(L \kappa_2) - i(k_1 k_3+\kappa_2^2)\sinh(L \kappa_2)}{(k_1+k_3)\kappa_2 \cosh(L \kappa_2) + i(- k_1 k_3+\kappa_2^2)\sinh(L \kappa_2)},\\
+    &amp;A_3 = \frac{2 e^{-ik_3 L}k_1 \kappa_2}{(k_1+k_3)\kappa_2 \cosh(L \kappa_2) + i(- k_1 k_3+\kappa_2^2)\sinh(L \kappa_2)},
+\end{align}
+\]</span></p>
+<p>with <span class="math inline">\(k_1 = k_3 = \sqrt{2m E/\hbar^2},\)</span> and <span class="math inline">\(\kappa_2 = \sqrt{2m(V_b - E)/\hbar^2}\)</span></p>
+<p>derive with Wolfram Mathematica</p>
+<div class="columns">
+<div class="column" style="width:20%;">
+<!-- ![](Mathematica_Logo.png){fig-align="center" width="100" height="100"} -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://www.wolframcloud.com/"><img src="Mathematica_Logo.png" width="100" height="100" class="figure-img"></a></p>
+</figure>
+</div>
+</div><div class="column" style="width:80%;">
+<pre class="{mathematica}"><code>M = {{
+        1,-1,-1,0},
+        {-\[ImaginaryI],-\[Kappa]2/k1,\[Kappa]2/k1,0},
+        {0,Exp[\[Kappa]2 L],Exp[-\[Kappa]2 L],-Exp[\[ImaginaryI] k3 L]},
+   {0,Exp[\[Kappa]2 L],- Exp[-\[Kappa]2 L],-\[ImaginaryI] k3/\[Kappa]2 Exp[\[ImaginaryI] k3 L]}
+};
+b = {-1, -\[ImaginaryI],0,0};
+ln=LinearSolve[M,b];
+B1 = ln[[1]]//FullSimplify
+A2 = ln[[2]]//FullSimplify
+B2 = ln[[3]]//FullSimplify
+A3 = ln[[4]]//FullSimplify</code></pre>
+</div>
+</div>
+<hr>
+<!-- ![](barrier0.15.png){width="1000" height="500"} -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="barrier0.15.png" width="800" height="400" class="figure-img"></p>
+</figure>
+</div>
+<p>wavefunctions <span class="math inline">\(\Psi(x)\)</span> incident on a potential barrier</p>
+<ul>
+<li><span class="math inline">\(V_b = 4\)</span>,</li>
+<li><span class="math inline">\(E = 2\)</span>,</li>
+<li><span class="math inline">\(L \kappa_2 = 0.3\)</span>.</li>
+</ul>
+<!-- wavefunctions $\Psi(x)$ incident on a potential barrier
+
+:::: {.columns}
+
+::: {.column width="20%"}
+\vspace{200em}
+- $V_b = 4$, 
+- $E = 2$, 
+- $L \kappa_2 = 0.3$.
+:::
+
+::: {.column width="80%"}
+![](barrier0.15.png){width="800" height="400" fig-align="center"}
+:::
+
+:::: -->
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="barrier0.15.gif" width="800" height="400" class="figure-img"></p>
+</figure>
+</div>
+<p>wavefunctions <span class="math inline">\(\Psi(x, t) = \exp(-iE t/\hbar)\Psi(x)\)</span> incident on a potential barrier</p>
+<ul>
+<li><span class="math inline">\(V_b = 4\)</span>,</li>
+<li><span class="math inline">\(E = 2\)</span>,</li>
+<li><span class="math inline">\(L \kappa_2 = 0.3\)</span>.</li>
+</ul>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="barrier0.5.gif" width="800" height="400" class="figure-img"></p>
+</figure>
+</div>
+<p>wavefunctions <span class="math inline">\(\Psi(x, t) = \exp(-iE t/\hbar)\Psi(x)\)</span> incident on a potential barrier</p>
+<ul>
+<li><span class="math inline">\(V_b = 4\)</span>,</li>
+<li><span class="math inline">\(E = 2\)</span>,</li>
+<li><span class="math inline">\(L \kappa_2 = 1\)</span>.</li>
+</ul>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="barrier1.gif" width="800" height="400" class="figure-img"></p>
+</figure>
+</div>
+<p>wavefunctions <span class="math inline">\(\Psi(x, t) = \exp(-iE t/\hbar)\Psi(x)\)</span> incident on a potential barrier</p>
+<ul>
+<li><span class="math inline">\(V_b = 4\)</span>,</li>
+<li><span class="math inline">\(E = 2\)</span>,</li>
+<li><span class="math inline">\(L \kappa_2 = 2\)</span>.</li>
+</ul>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="barrier4.gif" width="800" height="400" class="figure-img"></p>
+</figure>
+</div>
+<p>wavefunctions <span class="math inline">\(\Psi(x, t) = \exp(-iE t/\hbar)\Psi(x)\)</span> incident on a potential barrier</p>
+<ul>
+<li><span class="math inline">\(V_b = 4\)</span>,</li>
+<li><span class="math inline">\(E = 2\)</span>,</li>
+<li><span class="math inline">\(L \kappa_2 = 8\)</span>.</li>
+</ul>
+<!-- ---
+
+::: {#fig-elephants layout-ncol=2 layout-nrow=2}
+![$V_b = 4, E = 2, L \kappa_2 = 0.2$](barrier0.1.png){#fig-surus width="500" height="250"}
+
+![$V_b = 4, E = 2, L \kappa_2 = 1$](barrier0.5.png){#fig-hanno width="500" height="250"}
+
+![$V_b = 4, E = 2, L \kappa_2 = 2$](barrier1.png){#fig-hanno width="500" height="250"}
+
+![$V_b = 4, E = 2, L \kappa_2 = 8$](barrier4.png){#fig-hanno width="500" height="250"}
+
+wavefunctions $\Psi(x)$ incident on a potential barrier
+:::
+
+---
+
+::: {#fig-elephants layout-ncol=2 layout-nrow=2}
+![$V_b = 4, E = 2, L \kappa_2 = 0.2$](barrier0.1.gif){#fig-surus width="500" height="250"}
+
+![$V_b = 4, E = 2, L \kappa_2 = 1$](barrier0.5.gif){#fig-hanno width="500" height="250"}
+
+![$V_b = 4, E = 2, L \kappa_2 = 2$](barrier1.gif){#fig-hanno width="500" height="250"}
+
+![$V_b = 4, E = 2, L \kappa_2 = 8$](barrier4.gif){#fig-hanno width="500" height="250"}
+
+wavefunctions $\Psi(x, t) = \exp(-iE t/\hbar)\Psi(x)$ incident on a potential barrier
+
+::: -->
+<hr>
+<p>transmission <span class="math inline">\(\mathcal{T}\)</span> and reflection <span class="math inline">\(\mathcal{R}\)</span> can be calculated from the current densities <span class="math inline">\(J_i = \frac{\hbar}{m} \Im (\Psi^* \Psi')\)</span> (see ref…):</p>
+<p><span class="math display">\[
+\begin{align}
+    &amp;\color{orange}{\mathcal{R} = \frac{J_R}{J_I} = |B_1|^2} = \left|\frac{(k_1-k_3)\kappa_2 \cosh(L \kappa_2) - i(k_1 k_3+\kappa_2^2)\sinh(L \kappa_2)}{(k_1+k_3)\kappa_2 \cosh(L \kappa_2) + i(- k_1 k_3+\kappa_2^2)\sinh(L \kappa_2)}\right|^2,\\
+    &amp;\color{green}{\mathcal{T} = \frac{J_T}{J_I} = |A_3|^2} = \left|\frac{2 e^{-ik_3 L}k_1 \kappa_2}{(k_1+k_3)\kappa_2 \cosh(L \kappa_2) + i(- k_1 k_3+\kappa_2^2)\sinh(L \kappa_2)}\right|^2,
+\end{align}
+\]</span></p>
+<hr>
+<p><span class="math display">\[
+\begin{equation}
+    \color{green}{\mathcal{T}} = \left|\frac{2 e^{-ik_3 L}k_1 \kappa_2}{(k_1+k_3)\kappa_2 \cosh(L \kappa_2) + i(- k_1 k_3+\kappa_2^2)\sinh(L \kappa_2)}\right|^2,
+\end{equation}
+\]</span></p>
+<p><img src="RT_barrier_Ls_tst_0.png" class="absolute" data-top="150" width="720" height="480"></p>
+<hr>
+<p>for thick and/or tall barriers (<span class="math inline">\(L\kappa_2 \gg 1\)</span>) <em>(problem)</em></p>
+<p><span class="math display">\[\begin{equation}
+    \mathcal{T} = |A_3|^2 \approx 4 e^{-2\kappa_2 L}\left[1+\left(\frac{\kappa_2^2-k_1^2}{2k_1\kappa_2}\right)^2\right]^{-1}.
+\end{equation}
+\]</span></p>
+<p><img src="RT_barrier_Ls_tst_1.png" class="absolute" data-top="150" width="720" height="480"></p>
+<hr>
+<p>for thin barriers and/or energies right below the barrier (<span class="math inline">\(L\kappa_2 \ll 1\)</span>) <em>(problem)</em> <span class="math display">\[
+\begin{equation}
+    \mathcal{T} = |A_3|^2 \approx 1- (L\kappa_2)^2\left[1+\left(\frac{\kappa_2^2-k_1^2}{2k_1\kappa_2}\right)^2\right].
+\end{equation}
+\]</span></p>
+<p><img src="RT_barrier_Ls_tst_2.png" class="absolute" data-top="150" width="720" height="480"></p>
+<hr>
+</section>
+<section id="take-home-messages" class="level3">
+<h3 class="anchored" data-anchor-id="take-home-messages">Take-home messages</h3>
+<ul>
+<li><em>quantum tunnelling</em> across potential barriers emerges naturally from the Schrodinger equation,</li>
+<li>thin, short obstacles are no match for quantum tunnelling</li>
+</ul>
+<p><span class="math display">\[
+\begin{equation}
+    \mathcal{T}\approx 1 ~\text{for}~ L \kappa_2 \ll 1,
+\end{equation}
+\]</span></p>
+<ul>
+<li>transmission of the wavefunction drops off exponentially for long, tall barriers <span class="math display">\[
+\begin{equation}
+  \mathcal{T}\approx \exp(-2L \kappa_2) ~\text{for}~ L \kappa_2 \gg 1.
+\end{equation}
+\]</span></li>
+</ul>
+</section>
+<section id="problems-to-think-over-coffee" class="level3">
+<h3 class="anchored" data-anchor-id="problems-to-think-over-coffee">Problems to think over coffee</h3>
+<ul>
+<li>what would it take to emulate classical, hard border?</li>
+<li>where does this behaviour come from? it is the <em>quantum</em> feature? a <em>wave</em> phenomenon?</li>
+<li>could one boost the transmission with another obstacle?</li>
+</ul>
+<hr>
+<!-- 
+For a demonstration of a line plot on a polar axis, see @fig-polar.
+
+::: {.cell execution_count=1}
+``` {.python .cell-code}
+import numpy as np
+import matplotlib.pyplot as plt
+
+rs = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * rs
+fig, ax = plt.subplots(
+  subplot_kw = {'projection': 'polar'} 
+)
+ax.plot(theta, rs)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
+```
+
+::: {.cell-output .cell-output-display}
+![A line plot on a polar axis](quantum_tunnelling_presentation2_files/figure-html/fig-polar-output-1.png){#fig-polar width=450 height=439}
+:::
+:::
+
+
+ -->
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
